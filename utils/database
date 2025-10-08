@@ -1,0 +1,25 @@
+const db = require("mysql2")
+const connection = db.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "database", 
+    database: "first",
+    port: 3300
+})
+connection.connect((err)=>{
+    if(err){
+console.log(err)
+    }
+    console.log("Connection to server is successfull")
+})
+const table1 = `create table  if not exists users( name varchar(22),age int,id int
+)`
+const table2 = `create table if not exists buses( name varchar(22), id int,seat int
+)`
+connection.query(table1,(err,result)=>{
+    console.log("users created")
+})
+connection.query(table2,(err,result)=>{
+    console.log("users created")
+})
+module.exports = connection
