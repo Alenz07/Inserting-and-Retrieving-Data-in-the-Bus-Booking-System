@@ -1,0 +1,27 @@
+const db  = require("../utils/database")
+
+
+const add_user  = (req,res)=>{
+const{name,age,id} = req.body
+const query = `insert into users (name,age,id) values (?,?,?)`
+db.query(query,[name,age,id],(err,result)=>{
+    if(err){
+        console.log(err)
+    }
+    res.send(`User with name ${name} added to database`)
+    console.log(`User with name ${name} added to database`)
+})
+}
+const show_user = (req,res)=> {
+
+const query = `select * from users`
+db.query(query,(err,result)=>{
+    if(err){console.log(err)}
+        console.log("These are users")
+    res.json(result)
+    
+})
+}
+
+
+module.exports = {add_user,show_user}
